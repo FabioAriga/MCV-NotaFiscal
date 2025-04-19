@@ -31,4 +31,15 @@ public class ProdutoModel {
     public void setA03_estoque(int a03_estoque) {
         this.a03_estoque = a03_estoque;
     }
+
+    public ProdutoModel() {
+        
+    }
+    
+    public ProdutoModel(int a03_codigo, String a03_nome, double a03_valor_unitario, int a03_estoque) {
+        this.a03_codigo = a03_codigo;
+        this.a03_nome = a03_nome;
+        this.a03_valor_unitario = a03_valor_unitario;
+        this.a03_estoque = a03_estoque;
+    }
 }

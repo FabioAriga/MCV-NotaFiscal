@@ -1,0 +1,64 @@
+package Pck_Persistencia;
+
+import Pck_Model.ProdutoModel;
+import Pck_DAO.ConexaoMySql;
+import java.sql.CallableStatement;
+import java.sql.SQLException;
+import java.sql.ResultSet;
+
+public class ProdutoPersistencia {
+    CallableStatement oCall;
+    ConexaoMySql oConexaoMySql = new ConexaoMySql();
+
+    public void inserirProduto(ProdutoModel oProdutoModel) {
+        try {
+            oCall = oConexaoMySql.obj_connection.prepareCall("{CALL Proc_inserirProduto(?, ?, ?)}");
+            oCall.setString(1, oProdutoModel.getA03_nome());
+            oCall.setDouble(2, oProdutoModel.getA03_valor_unitario());
+            oCall.setInt(3, oProdutoModel.getA03_estoque());
+            oCall.execute();
+        } catch (SQLException erro) {
+            erro.printStackTrace();
+        }
+    }
+    
+    public void alterarProduto(ProdutoModel oProdutoModel) {
+        try {
+            oCall = oConexaoMySql.obj_connection.prepareCall("{CALL Proc_alterarProduto(?, ?, ?, ?)}");
+            oCall.setInt(1, oProdutoModel.getA03_codigo());
+            oCall.setString(1, oProdutoModel.getA03_nome());
+            oCall.setDouble(2, oProdutoModel.getA03_valor_unitario());
+            oCall.setInt(3, oProdutoModel.getA03_estoque());
+            oCall.execute();
+        } catch (SQLException erro) {
+            erro.printStackTrace();
+        }
+    }
+    
+    public void removerProduto(ProdutoModel oProdutoModel) {
+        try {
+            oCall = oConexaoMySql.obj_connection.prepareCall("{CALL Proc_removerProduto(?)}");
+            oCall.setInt(1, oProdutoModel.getA03_codigo());
+            oCall.execute();
+        } catch (SQLException erro) {
+            erro.printStackTrace();
+        }
+    }
+    
+    public ProdutoModel buscarProduto(int codigo) {
+        try {
+            oCall = oConexaoMySql.obj_connection.prepareCall("{CALL Proc_buscarProduto(?)}");
+            oCall.setInt(1, codigo);
+            ResultSet rs = oCall.executeQuery();
+            if (rs.next()) {
+                String nome = rs.getString("nome");
+                Double valor_unitario = rs.getDouble("valor_unitario");
+                int estoque = rs.getInt("estoque");
+                return new ProdutoModel(codigo, nome, valor_unitario, estoque);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+}

@@ -15,6 +15,7 @@ public class NotaView extends javax.swing.JFrame {
      */
     public NotaView() {
         initComponents();
+        setExtendedState(MAXIMIZED_BOTH);
     }
 
     /**
@@ -25,20 +26,17 @@ public class NotaView extends javax.swing.JFrame {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
+        java.awt.GridBagConstraints gridBagConstraints;
 
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
-        jComboBox2 = new javax.swing.JComboBox<>();
         jLabel4 = new javax.swing.JLabel();
-        jComboBox3 = new javax.swing.JComboBox<>();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
         jTextField1 = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
-        jComboBox4 = new javax.swing.JComboBox<>();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
@@ -48,28 +46,45 @@ public class NotaView extends javax.swing.JFrame {
         jButton4 = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
         jButton6 = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        jTextField5 = new javax.swing.JTextField();
+        jTextField6 = new javax.swing.JTextField();
+        jTextField7 = new javax.swing.JTextField();
+        jTextField8 = new javax.swing.JTextField();
+        jButton7 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Nota");
+        getContentPane().setLayout(new java.awt.GridBagLayout());
 
         jLabel2.setText("Codigo do cliente");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.gridwidth = 3;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        gridBagConstraints.insets = new java.awt.Insets(29, 94, 0, 0);
+        getContentPane().add(jLabel2, gridBagConstraints);
 
         jLabel3.setText("CPF");
-
-        jComboBox1.setEditable(true);
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
-        jComboBox2.setEditable(true);
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jComboBox2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBox2ActionPerformed(evt);
-            }
-        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 3;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        gridBagConstraints.insets = new java.awt.Insets(9, 151, 0, 0);
+        getContentPane().add(jLabel3, gridBagConstraints);
 
         jLabel4.setText("Nome do cliente");
-
-        jComboBox3.setEditable(true);
-        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 11;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.gridwidth = 4;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        gridBagConstraints.insets = new java.awt.Insets(29, 36, 0, 0);
+        getContentPane().add(jLabel4, gridBagConstraints);
 
         jButton1.setText("Inserir");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -77,29 +92,108 @@ public class NotaView extends javax.swing.JFrame {
                 jButton1ActionPerformed(evt);
             }
         });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 5;
+        gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        gridBagConstraints.insets = new java.awt.Insets(18, 112, 0, 0);
+        getContentPane().add(jButton1, gridBagConstraints);
 
         jButton2.setText("Alterar");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 5;
+        gridBagConstraints.gridy = 5;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        gridBagConstraints.insets = new java.awt.Insets(18, 81, 0, 0);
+        getContentPane().add(jButton2, gridBagConstraints);
 
         jButton3.setText("Excluir");
-
-        jLabel5.setText("Nome do produto");
-
-        jTextField1.setEditable(false);
-
-        jLabel6.setText("Codigo do produto");
-
-        jComboBox4.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jComboBox4.addActionListener(new java.awt.event.ActionListener() {
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBox4ActionPerformed(evt);
+                jButton3ActionPerformed(evt);
             }
         });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 6;
+        gridBagConstraints.gridy = 5;
+        gridBagConstraints.gridwidth = 4;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        gridBagConstraints.insets = new java.awt.Insets(18, 40, 0, 0);
+        getContentPane().add(jButton3, gridBagConstraints);
+
+        jLabel5.setText("Nome do produto");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 6;
+        gridBagConstraints.gridwidth = 4;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        gridBagConstraints.insets = new java.awt.Insets(30, 93, 0, 0);
+        getContentPane().add(jLabel5, gridBagConstraints);
+
+        jTextField1.setEditable(false);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 5;
+        gridBagConstraints.gridy = 6;
+        gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.gridheight = 2;
+        gridBagConstraints.ipadx = 136;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        gridBagConstraints.insets = new java.awt.Insets(25, 12, 0, 0);
+        getContentPane().add(jTextField1, gridBagConstraints);
+
+        jLabel6.setText("Codigo do produto");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 8;
+        gridBagConstraints.gridwidth = 5;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        gridBagConstraints.insets = new java.awt.Insets(16, 89, 0, 0);
+        getContentPane().add(jLabel6, gridBagConstraints);
 
         jLabel7.setText("Quantidade");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 11;
+        gridBagConstraints.gridy = 6;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        gridBagConstraints.insets = new java.awt.Insets(30, 24, 0, 0);
+        getContentPane().add(jLabel7, gridBagConstraints);
 
         jLabel8.setText("Valor do produto");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 11;
+        gridBagConstraints.gridy = 8;
+        gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        gridBagConstraints.insets = new java.awt.Insets(16, 24, 0, 0);
+        getContentPane().add(jLabel8, gridBagConstraints);
 
         jLabel9.setText("Valor total do item");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 11;
+        gridBagConstraints.gridy = 10;
+        gridBagConstraints.gridwidth = 3;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        gridBagConstraints.insets = new java.awt.Insets(17, 18, 0, 0);
+        getContentPane().add(jLabel9, gridBagConstraints);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 15;
+        gridBagConstraints.gridy = 6;
+        gridBagConstraints.gridheight = 2;
+        gridBagConstraints.ipadx = 147;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        gridBagConstraints.insets = new java.awt.Insets(25, 19, 0, 59);
+        getContentPane().add(jTextField2, gridBagConstraints);
 
         jTextField3.setEditable(false);
         jTextField3.addActionListener(new java.awt.event.ActionListener() {
@@ -107,122 +201,132 @@ public class NotaView extends javax.swing.JFrame {
                 jTextField3ActionPerformed(evt);
             }
         });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 15;
+        gridBagConstraints.gridy = 8;
+        gridBagConstraints.gridheight = 2;
+        gridBagConstraints.ipadx = 147;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        gridBagConstraints.insets = new java.awt.Insets(11, 19, 0, 59);
+        getContentPane().add(jTextField3, gridBagConstraints);
 
         jTextField4.setEditable(false);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 15;
+        gridBagConstraints.gridy = 10;
+        gridBagConstraints.gridheight = 2;
+        gridBagConstraints.ipadx = 147;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        gridBagConstraints.insets = new java.awt.Insets(12, 19, 0, 59);
+        getContentPane().add(jTextField4, gridBagConstraints);
 
         jButton4.setText("Inserir");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 12;
+        gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        gridBagConstraints.insets = new java.awt.Insets(4, 112, 19, 0);
+        getContentPane().add(jButton4, gridBagConstraints);
 
         jButton5.setText("Alterar");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 5;
+        gridBagConstraints.gridy = 12;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        gridBagConstraints.insets = new java.awt.Insets(4, 81, 19, 0);
+        getContentPane().add(jButton5, gridBagConstraints);
 
         jButton6.setText("Excluir");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 6;
+        gridBagConstraints.gridy = 12;
+        gridBagConstraints.gridwidth = 4;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        gridBagConstraints.insets = new java.awt.Insets(4, 40, 19, 0);
+        getContentPane().add(jButton6, gridBagConstraints);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(29, 29, 29)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel3)
-                            .addComponent(jButton1)
-                            .addComponent(jLabel5)
-                            .addComponent(jLabel6))
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(25, 25, 25)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(58, 58, 58)
-                                        .addComponent(jLabel4)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(12, 12, 12)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(jComboBox4, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addGap(38, 38, 38)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jLabel8)
-                                            .addComponent(jLabel7)
-                                            .addComponent(jLabel9))
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                                .addGap(21, 21, 21)
-                                                .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                            .addGroup(layout.createSequentialGroup()
-                                                .addGap(21, 21, 21)
-                                                .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                            .addGroup(layout.createSequentialGroup()
-                                                .addGap(18, 18, 18)
-                                                .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                        .addGroup(layout.createSequentialGroup()
-                                            .addComponent(jButton5)
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                            .addComponent(jButton6))
-                                        .addGroup(layout.createSequentialGroup()
-                                            .addComponent(jButton2)
-                                            .addGap(47, 47, 47)
-                                            .addComponent(jButton3)))))))
-                    .addComponent(jButton4))
-                .addContainerGap(36, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(59, 59, 59)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel4)
-                    .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(21, 21, 21)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2)
-                    .addComponent(jButton3))
-                .addGap(25, 25, 25)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel5)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel7)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(12, 12, 12)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel6)
-                    .addComponent(jComboBox4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel8)
-                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel9)
-                    .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton4)
-                    .addComponent(jButton5)
-                    .addComponent(jButton6))
-                .addContainerGap(20, Short.MAX_VALUE))
-        );
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel1.setText("Nota Fiscal");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 6;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridwidth = 5;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        gridBagConstraints.insets = new java.awt.Insets(19, 27, 0, 0);
+        getContentPane().add(jLabel1, gridBagConstraints);
+
+        jTextField5.setEditable(false);
+        jTextField5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField5ActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 5;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.gridwidth = 3;
+        gridBagConstraints.gridheight = 2;
+        gridBagConstraints.ipadx = 141;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        gridBagConstraints.insets = new java.awt.Insets(24, 13, 0, 0);
+        getContentPane().add(jTextField5, gridBagConstraints);
+
+        jTextField6.setEditable(false);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 15;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.gridheight = 2;
+        gridBagConstraints.ipadx = 140;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        gridBagConstraints.insets = new java.awt.Insets(24, 26, 0, 59);
+        getContentPane().add(jTextField6, gridBagConstraints);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 5;
+        gridBagConstraints.gridy = 3;
+        gridBagConstraints.gridwidth = 3;
+        gridBagConstraints.gridheight = 2;
+        gridBagConstraints.ipadx = 141;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        gridBagConstraints.insets = new java.awt.Insets(4, 13, 0, 0);
+        getContentPane().add(jTextField7, gridBagConstraints);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 5;
+        gridBagConstraints.gridy = 8;
+        gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.gridheight = 2;
+        gridBagConstraints.ipadx = 136;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        gridBagConstraints.insets = new java.awt.Insets(11, 12, 0, 0);
+        getContentPane().add(jTextField8, gridBagConstraints);
+
+        jButton7.setText("Voltar");
+        jButton7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton7ActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 11;
+        gridBagConstraints.gridy = 12;
+        gridBagConstraints.gridwidth = 3;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        gridBagConstraints.insets = new java.awt.Insets(4, 47, 19, 0);
+        getContentPane().add(jButton7, gridBagConstraints);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void jComboBox4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox4ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jComboBox4ActionPerformed
 
     private void jTextField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField3ActionPerformed
         // TODO add your handling code here:
@@ -232,9 +336,17 @@ public class NotaView extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    private void jComboBox2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox2ActionPerformed
+    private void jTextField5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField5ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jComboBox2ActionPerformed
+    }//GEN-LAST:event_jTextField5ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_jButton7ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -278,10 +390,8 @@ public class NotaView extends javax.swing.JFrame {
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
-    private javax.swing.JComboBox<String> jComboBox1;
-    private javax.swing.JComboBox<String> jComboBox2;
-    private javax.swing.JComboBox<String> jComboBox3;
-    private javax.swing.JComboBox<String> jComboBox4;
+    private javax.swing.JButton jButton7;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -294,5 +404,9 @@ public class NotaView extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
     private javax.swing.JTextField jTextField4;
+    private javax.swing.JTextField jTextField5;
+    private javax.swing.JTextField jTextField6;
+    private javax.swing.JTextField jTextField7;
+    private javax.swing.JTextField jTextField8;
     // End of variables declaration//GEN-END:variables
 }

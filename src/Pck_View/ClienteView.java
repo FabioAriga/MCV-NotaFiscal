@@ -5,6 +5,8 @@
 package Pck_View;
 
     import Pck_Control.ClienteControl;
+    import Pck_Model.ClienteModel;
+    import Pck_Persistencia.ClientePersistencia;
     import java.text.SimpleDateFormat;
     import java.util.Date;
     import javax.swing.JOptionPane;
@@ -13,12 +15,12 @@ package Pck_View;
  *
  * @author Lab03fatec
  */
-public class InserirClienteView extends javax.swing.JFrame {
+public class ClienteView extends javax.swing.JFrame {
 
     /**
      * Creates new form ClienteView
      */
-    public InserirClienteView() {
+    public ClienteView() {
         initComponents();
     }
 
@@ -49,8 +51,12 @@ public class InserirClienteView extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
+        jLabel9 = new javax.swing.JLabel();
+        jTextField8 = new javax.swing.JTextField();
+        jButton4 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Cliente");
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel1.setText("Cliente");
@@ -87,6 +93,11 @@ public class InserirClienteView extends javax.swing.JFrame {
             }
         });
 
+        jTextField4.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                jTextField4FocusLost(evt);
+            }
+        });
         jTextField4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField4ActionPerformed(evt);
@@ -125,10 +136,21 @@ public class InserirClienteView extends javax.swing.JFrame {
             }
         });
 
-        jButton3.setText("Excluir");
+        jButton3.setText("Remover");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton3ActionPerformed(evt);
+            }
+        });
+
+        jLabel9.setText("Codigo");
+
+        jTextField8.setEditable(false);
+
+        jButton4.setText("Vortar");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
             }
         });
 
@@ -169,10 +191,19 @@ public class InserirClienteView extends javax.swing.JFrame {
                         .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 66, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton1, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jButton2, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jButton3, javax.swing.GroupLayout.Alignment.TRAILING))
-                .addGap(44, 44, 44))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jTextField8, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(45, 45, 45))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(57, 57, 57))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addContainerGap())))
             .addGroup(layout.createSequentialGroup()
                 .addGap(203, 203, 203)
                 .addComponent(jLabel1)
@@ -183,16 +214,16 @@ public class InserirClienteView extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(15, 15, 15)
                 .addComponent(jLabel1)
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel2)
+                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel3)
+                            .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel4)
@@ -204,7 +235,21 @@ public class InserirClienteView extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel6)
-                            .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(4, 4, 4)
+                        .addComponent(jLabel9)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTextField8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButton1)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButton2)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButton3)))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel7)
@@ -214,14 +259,10 @@ public class InserirClienteView extends javax.swing.JFrame {
                             .addComponent(jLabel8)
                             .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addContainerGap(22, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton1)
-                        .addGap(18, 18, 18)
-                        .addComponent(jButton2)
-                        .addGap(18, 18, 18)
-                        .addComponent(jButton3)
-                        .addGap(30, 30, 30))))
+                        .addComponent(jButton4)
+                        .addGap(41, 41, 41))))
         );
 
         pack();
@@ -279,12 +320,64 @@ public class InserirClienteView extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        // TODO add your handling code here:
+        int codigo = Integer.parseInt(jTextField8.getText());
+
+        ClienteControl excluir = new ClienteControl();
+        excluir.removerCliente(codigo);
+        JOptionPane.showMessageDialog(this, "Cliente Removido");
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
+        int codigo = Integer.parseInt(jTextField8.getText());
+        String nome = jTextField1.getText();
+        String endereco = jTextField2.getText();
+        long telefone = Long.parseLong(jTextField3.getText());
+        long cpf = Long.parseLong(jTextField4.getText());
+        String sdata_nasc = jTextField5.getText();
+        String email = jTextField6.getText();
+        double credito = Double.parseDouble(jTextField7.getText());
+        
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+        Date data = null;
+        try{
+            data = sdf.parse(sdata_nasc);
+        } catch (Exception e){
+            JOptionPane.showMessageDialog(this, "Formato da data errado, uso dd/MM/yyyy");
+        }
+        java.sql.Date data_nasc = new java.sql.Date(data.getTime());
+        
+        ClienteControl alterar = new ClienteControl();
+        alterar.atualizarCliente(codigo, nome, endereco, telefone, cpf, data_nasc, email, credito);
+        JOptionPane.showMessageDialog(this, "Cliente Alterado");
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jTextField4FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextField4FocusLost
+        if (!jTextField4.getText().trim().isEmpty()) {
+            try {
+                long cpf = Long.parseLong(jTextField4.getText());
+                ClientePersistencia buscar = new ClientePersistencia();
+                ClienteModel busca = buscar.buscarCliente(cpf);
+                if (busca != null) {
+                    jTextField8.setText(String.valueOf(busca.getA01_codigo()));
+                    jTextField1.setText(busca.getA01_nome());
+                    jTextField2.setText(busca.getA01_endereco());
+                    jTextField3.setText(String.valueOf(busca.getA01_telefone()));
+                    SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+                    jTextField5.setText(sdf.format(busca.getA01_data_nasc()));
+                    jTextField6.setText(busca.getA01_email());
+                    jTextField7.setText(String.valueOf(busca.getA01_credito()));
+                } else {
+                    JOptionPane.showMessageDialog(this, "Cliente não encontrado");
+                }
+            } catch (NumberFormatException e) {
+                JOptionPane.showMessageDialog(this, "CPF inválido");
+            }
+        }
+    }//GEN-LAST:event_jTextField4FocusLost
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_jButton4ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -303,21 +396,23 @@ public class InserirClienteView extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(InserirClienteView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ClienteView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(InserirClienteView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ClienteView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(InserirClienteView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ClienteView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(InserirClienteView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ClienteView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new InserirClienteView().setVisible(true);
+                new ClienteView().setVisible(true);
             }
         });
     }
@@ -326,6 +421,7 @@ public class InserirClienteView extends javax.swing.JFrame {
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -334,6 +430,7 @@ public class InserirClienteView extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
@@ -341,5 +438,6 @@ public class InserirClienteView extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField5;
     private javax.swing.JTextField jTextField6;
     private javax.swing.JTextField jTextField7;
+    private javax.swing.JTextField jTextField8;
     // End of variables declaration//GEN-END:variables
 }

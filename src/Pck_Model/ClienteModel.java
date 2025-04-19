@@ -1,5 +1,7 @@
 package Pck_Model;
 
+import java.sql.Date;
+
 public class ClienteModel {
     private int a01_codigo;
     private String a01_nome;
@@ -57,6 +59,21 @@ public class ClienteModel {
         this.a01_email = a01_email;
     }
     public void setA01_credito(double a01_credito) {
+        this.a01_credito = a01_credito;
+    }
+    
+    public ClienteModel(){
+        
+    }
+
+    public ClienteModel(int a01_codigo, String a01_nome, String a01_endereco, long a01_telefone, long a01_cpf, Date a01_data_nasc, String a01_email, double a01_credito) {
+        this.a01_codigo = a01_codigo;
+        this.a01_nome = a01_nome;
+        this.a01_endereco = a01_endereco;
+        this.a01_telefone = a01_telefone;
+        this.a01_cpf = a01_cpf;
+        this.a01_data_nasc = a01_data_nasc;
+        this.a01_email = a01_email;
         this.a01_credito = a01_credito;
     }
 }
