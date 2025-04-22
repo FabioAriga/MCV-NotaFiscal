@@ -11,7 +11,7 @@ public class ItemPersistencia {
 
     public void inserirItem(ItemModel oItemModel) {
         try {
-            oCall = oConexaoMySql.obj_connection.prepareCall("{CALL PROC_INSERIR_CLIENTE(?, ?, ?, ?)}");
+            oCall = oConexaoMySql.obj_connection.prepareCall("{CALL Proc_inserirItem(?, ?, ?, ?)}");
             oCall.setInt(1, oItemModel.getA03_codigo());
             oCall.setInt(2, oItemModel.getA02_codigo());
             oCall.setInt(3, oItemModel.getA04_quantidade());
@@ -24,7 +24,7 @@ public class ItemPersistencia {
     
     public void alterarItem(ItemModel oItemModel) {
         try {
-            oCall = oConexaoMySql.obj_connection.prepareCall("{CALL PROC_ALTERAR_CLIENTE(?, ?, ?, ?, ?)}");
+            oCall = oConexaoMySql.obj_connection.prepareCall("{CALL Proc_alterarItem(?, ?, ?, ?, ?)}");
             oCall.setInt(1, oItemModel.getA04_codigo());
             oCall.setInt(2, oItemModel.getA03_codigo());
             oCall.setInt(3, oItemModel.getA02_codigo());
@@ -38,7 +38,7 @@ public class ItemPersistencia {
     
     public void removerItem(ItemModel oItemModel) {
         try {
-            oCall = oConexaoMySql.obj_connection.prepareCall("{CALL PROC_EXCLUIR_CLIENTE(?)}");
+            oCall = oConexaoMySql.obj_connection.prepareCall("{CALL Proc_removerItem(?)}");
             oCall.setInt(1, oItemModel.getA04_codigo());
             oCall.execute();
         } catch (SQLException erro) {

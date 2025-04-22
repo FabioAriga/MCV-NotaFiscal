@@ -1,29 +1,29 @@
 package Pck_Control;
 
 import Pck_Model.PedidoModel; 
-//import Pck_Persistencia.PedidoPersistencia; 
+import Pck_Persistencia.PedidoPersistencia; 
 
 public class PedidoControl {
     PedidoModel oPedidoModel = new PedidoModel(); 
-    //PedidoPersistencia oPedidoPersistencia = new PedidoPersistencia();  
+    PedidoPersistencia oPedidoPersistencia = new PedidoPersistencia();  
     
-    public void inserirPedido (java.sql.Date da02_data, double da02_valor_total, int ia01_codigo) { 
+    public int inserirPedido (java.sql.Date da02_data, double da02_valor_total, int ia01_codigo) { 
     oPedidoModel.setA02_data(da02_data); 
     oPedidoModel.setA02_valor_total(da02_valor_total); 
     oPedidoModel.setA01_codigo(ia01_codigo); 
-    //oPedidoPersistencia.inserirPedido(oPedidoModel); 
+    return oPedidoPersistencia.inserirPedido(oPedidoModel); 
     } 
     
-    public void atualizarPedido(int ia02_codigo, java.sql.Date da02_data, double da02_valor_total, int ia01_codigo) { 
+    public void atualizarPedido(int ia02_codigo, java.sql.Date da02_data, double da02_valor_total, int ia01_codigo, double da04_valor_item) { 
     oPedidoModel.setA02_codigo(ia02_codigo); 
     oPedidoModel.setA02_data(da02_data); 
     oPedidoModel.setA02_valor_total(da02_valor_total); 
     oPedidoModel.setA01_codigo(ia01_codigo); 
-    //oPedidoPersistencia.alterarPedido(oPedidoModel); 
+    oPedidoPersistencia.alterarPedido(oPedidoModel, da04_valor_item); 
     } 
     
     public void removerPedido(int ia02_codigo) { 
     oPedidoModel.setA02_codigo(ia02_codigo); 
-    //oPedidoPersistencia.removerPedido(oPedidoModel); 
+    oPedidoPersistencia.removerPedido(oPedidoModel); 
     } 
 }

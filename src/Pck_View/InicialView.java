@@ -222,7 +222,8 @@ public class InicialView extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
-        // TODO add your handling code here:
+        ProdutoView Produto = new ProdutoView();
+        Produto.setVisible(true);
     }//GEN-LAST:event_jButton6ActionPerformed
 
     
