@@ -281,7 +281,27 @@ public class ClienteView extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextField3ActionPerformed
 
     private void jTextField4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField4ActionPerformed
-        // TODO add your handling code here:
+        if (!jTextField4.getText().trim().isEmpty()) {
+            try {
+                long cpf = Long.parseLong(jTextField4.getText());
+                ClientePersistencia buscar = new ClientePersistencia();
+                ClienteModel busca = buscar.buscarCliente(cpf);
+                if (busca != null) {
+                    jTextField8.setText(String.valueOf(busca.getA01_codigo()));
+                    jTextField1.setText(busca.getA01_nome());
+                    jTextField2.setText(busca.getA01_endereco());
+                    jTextField3.setText(String.valueOf(busca.getA01_telefone()));
+                    SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+                    jTextField5.setText(sdf.format(busca.getA01_data_nasc()));
+                    jTextField6.setText(busca.getA01_email());
+                    jTextField7.setText(String.valueOf(busca.getA01_credito()));
+                } else {
+                    JOptionPane.showMessageDialog(this, "Cliente não encontrado");
+                }
+            } catch (NumberFormatException e) {
+                JOptionPane.showMessageDialog(this, "CPF inválido");
+            }
+        }
     }//GEN-LAST:event_jTextField4ActionPerformed
 
     private void jTextField5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField5ActionPerformed

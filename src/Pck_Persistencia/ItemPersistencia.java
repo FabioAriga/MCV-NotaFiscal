@@ -38,11 +38,28 @@ public class ItemPersistencia {
     
     public void removerItem(ItemModel oItemModel) {
         try {
-            oCall = oConexaoMySql.obj_connection.prepareCall("{CALL Proc_removerItem(?)}");
-            oCall.setInt(1, oItemModel.getA04_codigo());
+            oCall = oConexaoMySql.obj_connection.prepareCall("{CALL Proc_removerItem(?, ?)}");
+            oCall.setInt(1, oItemModel.getA03_codigo());
+            oCall.setInt(2, oItemModel.getA02_codigo());
             oCall.execute();
         } catch (SQLException erro) {
             erro.printStackTrace();
         }
+    }
+    
+    public double somarValores(int id_pedido) {
+        double valor_total = 0;
+        try {
+            if (oConexaoMySql.getConnection()) {
+                CallableStatement oCall = oConexaoMySql.obj_connection.prepareCall("{CALL Proc_somarValorTotalItens(?, ?)}");
+                oCall.setInt(1, id_pedido);
+                oCall.registerOutParameter(2, java.sql.Types.DOUBLE);
+                oCall.execute();
+                valor_total = oCall.getDouble(2);
+            }
+        } catch (SQLException erro) {
+            erro.printStackTrace();
+        }
+        return valor_total;
     }
 }

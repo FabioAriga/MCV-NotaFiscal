@@ -24,8 +24,9 @@ public class ItemControl {
     oItemPersistencia.alterarItem (oItemModel); 
     } 
     
-    public void removerItem(int ia04_codigo) { 
-    oItemModel.setA04_codigo(ia04_codigo); 
+    public void removerItem(int ia03_codigo, int ia02_codigo) { 
+    oItemModel.setA03_codigo(ia03_codigo); 
+    oItemModel.setA02_codigo(ia02_codigo); 
     oItemPersistencia.removerItem(oItemModel); 
     } 
 }

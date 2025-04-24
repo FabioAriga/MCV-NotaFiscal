@@ -26,4 +26,12 @@ public class PedidoControl {
     oPedidoModel.setA02_codigo(ia02_codigo); 
     oPedidoPersistencia.removerPedido(oPedidoModel); 
     } 
+    
+    public void excluirItemPedido(int ia02_codigo, java.sql.Date da02_data, double da02_valor_total, int ia01_codigo, double da04_valor_item) { 
+    oPedidoModel.setA02_codigo(ia02_codigo); 
+    oPedidoModel.setA02_data(da02_data); 
+    oPedidoModel.setA02_valor_total(da02_valor_total); 
+    oPedidoModel.setA01_codigo(ia01_codigo); 
+    oPedidoPersistencia.excluirItemPedido(oPedidoModel, da04_valor_item); 
+    } 
 }

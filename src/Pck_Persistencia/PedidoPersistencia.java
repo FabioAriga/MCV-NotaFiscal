@@ -54,4 +54,20 @@ public class PedidoPersistencia{
             erro.printStackTrace();
         }
     }
+    
+    public void excluirItemPedido(PedidoModel oPedidoModel, double da04_valor_item) {
+        try {
+            if (oConexaoMySql.getConnection()) {
+                oCall = oConexaoMySql.obj_connection.prepareCall("{CALL Proc_excluirItemPedido(?, ?, ?, ?, ?)}");
+                oCall.setInt(1, oPedidoModel.getA02_codigo());
+                oCall.setDate(2, oPedidoModel.getA02_data());
+                oCall.setDouble(3, oPedidoModel.getA02_valor_total());
+                oCall.setInt(4, oPedidoModel.getA01_codigo());
+                oCall.setDouble(5, da04_valor_item);
+                oCall.execute();
+            }
+        } catch (SQLException erro) {
+            erro.printStackTrace();
+        }
+    }
 }
