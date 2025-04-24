@@ -4,13 +4,12 @@
  */
 package Pck_View;
 
+import Pck_Control.ClienteControl;
 import Pck_Control.ItemControl;
 import Pck_Control.PedidoControl;
+import Pck_Control.ProdutoControl;
 import Pck_Model.ClienteModel;
 import Pck_Model.ProdutoModel;
-import Pck_Persistencia.ClientePersistencia;
-import Pck_Persistencia.ItemPersistencia;
-import Pck_Persistencia.ProdutoPersistencia;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import javax.swing.JOptionPane;
@@ -20,13 +19,14 @@ import javax.swing.JOptionPane;
  * @author Lab03fatec
  */
 public class NotaView extends javax.swing.JFrame {
-
+    private NotaFiscalView oNotaFiscalView;
     /**
      * Creates new form NotaView
      */
-    public NotaView() {
+    public NotaView(NotaFiscalView oNotaFiscalView) {
         initComponents();
         setExtendedState(MAXIMIZED_BOTH);
+        this.oNotaFiscalView = oNotaFiscalView;
     }
 
     /**
@@ -468,22 +468,21 @@ public class NotaView extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextField3ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        int codigo_cliente = Integer.parseInt(jTextField5.getText());
-        String sdata_pedido = jTextField9.getText();
-        
-        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+        int ia01_codigo = Integer.parseInt(jTextField5.getText());
+        String sa02_data = jTextField9.getText();
+        SimpleDateFormat oSimpleDateFormat = new SimpleDateFormat("dd/MM/yyyy");
         Date data = null;
         try{
-            data = sdf.parse(sdata_pedido);
+            data = oSimpleDateFormat.parse(sa02_data);
         } catch (Exception e){
             JOptionPane.showMessageDialog(this, "Formato da data errado, uso dd/MM/yyyy");
         }
-        java.sql.Date data_pedido = new java.sql.Date(data.getTime());
+        java.sql.Date da02_data = new java.sql.Date(data.getTime());
         
-        PedidoControl inserir_cliente = new PedidoControl();
-        int codigo_pedido = inserir_cliente.inserirPedido(data_pedido, 0.0, codigo_cliente);
-        if (codigo_pedido > 0) {
-            jTextField10.setText(String.valueOf(codigo_pedido));
+        PedidoControl oPedidoControl = new PedidoControl();
+        int ia02_codigo = oPedidoControl.inserirPedido(da02_data, 0.0, ia01_codigo);
+        if (ia02_codigo > 0) {
+            jTextField10.setText(String.valueOf(ia02_codigo));
             JOptionPane.showMessageDialog(this, "Pedido iniciado");
         } else {
             JOptionPane.showMessageDialog(this, "Erro ao iniciar o pedido.");
@@ -495,10 +494,9 @@ public class NotaView extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextField5ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        int codigo_pedido = Integer.parseInt(jTextField10.getText());
-        
-        PedidoControl excluir = new PedidoControl();
-        excluir.removerPedido(codigo_pedido);
+        int ia02_codigo = Integer.parseInt(jTextField10.getText());
+        PedidoControl oPedidoControl = new PedidoControl();
+        oPedidoControl.removerPedido(ia02_codigo);
         JOptionPane.showMessageDialog(this, "Pedido deletado");
     }//GEN-LAST:event_jButton3ActionPerformed
 
@@ -511,28 +509,27 @@ public class NotaView extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextField1ActionPerformed
 
     private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
-        int codigo_pedido = Integer.parseInt(jTextField10.getText());
-        int codigo_produto = Integer.parseInt(jTextField8.getText());
-        int quantidade = Integer.parseInt(jTextField2.getText());
-        double valor_item = Double.parseDouble(jTextField4.getText());
-        int codigo_cliente = Integer.parseInt(jTextField5.getText());
-        String sdata_pedido = jTextField9.getText();
-        
-        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+        int ia02_codigo = Integer.parseInt(jTextField10.getText());
+        int ia03_codigo = Integer.parseInt(jTextField8.getText());
+        int ia04_quantidade = Integer.parseInt(jTextField2.getText());
+        double da04_valor_item = Double.parseDouble(jTextField4.getText());
+        int ia01_codigo = Integer.parseInt(jTextField5.getText());
+        String sa02_data = jTextField9.getText();
+        SimpleDateFormat oSimpleDateFormat = new SimpleDateFormat("dd/MM/yyyy");
         Date data = null;
         try{
-            data = sdf.parse(sdata_pedido);
+            data = oSimpleDateFormat.parse(sa02_data);
         } catch (Exception e){
             JOptionPane.showMessageDialog(this, "Formato da data errado, uso dd/MM/yyyy");
         }
-        java.sql.Date data_pedido = new java.sql.Date(data.getTime());
-        
-        ItemControl alterar = new ItemControl();
-        alterar.atualizarItem(0, codigo_produto, codigo_pedido, quantidade, valor_item);
-        ItemPersistencia somar = new ItemPersistencia();
-        double valor_total = somar.somarValores(codigo_pedido);
-        PedidoControl altera = new PedidoControl();
-        altera.atualizarPedido(codigo_pedido, data_pedido, valor_total, codigo_cliente, 0.0);
+        java.sql.Date da02_data = new java.sql.Date(data.getTime());
+        ItemControl oItemControl = new ItemControl();
+        oItemControl.atualizarItem(0, ia03_codigo, ia02_codigo, ia04_quantidade, da04_valor_item);
+        double da02_valor_total = oItemControl.somarValores(ia02_codigo);
+        PedidoControl oPedidoControl = new PedidoControl();
+        oPedidoControl.atualizarPedido(ia02_codigo, da02_data, da02_valor_total, ia01_codigo, 0.0);
+        oNotaFiscalView.atualizarTabela(ia02_codigo);
+        oNotaFiscalView.atualizarValorTotal(ia02_codigo);
         JOptionPane.showMessageDialog(this, "Item atualizado");
     }//GEN-LAST:event_jButton9ActionPerformed
 
@@ -543,12 +540,12 @@ public class NotaView extends javax.swing.JFrame {
     private void jTextField7FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextField7FocusLost
         if (!jTextField7.getText().trim().isEmpty()) {
             try {
-                long cpf = Long.parseLong(jTextField7.getText());
-                ClientePersistencia buscar = new ClientePersistencia();
-                ClienteModel busca = buscar.buscarCliente(cpf);
-                if (busca != null) {
-                    jTextField5.setText(String.valueOf(busca.getA01_codigo()));
-                    jTextField6.setText(busca.getA01_nome());
+                long la01_cpf = Long.parseLong(jTextField7.getText());
+                ClienteControl oClienteControl = new ClienteControl();
+                ClienteModel oClienteModel = oClienteControl.buscarCliente(la01_cpf);
+                if (oClienteModel != null) {
+                    jTextField5.setText(String.valueOf(oClienteModel.getA01_codigo()));
+                    jTextField6.setText(oClienteModel.getA01_nome());
                 } else {
                     JOptionPane.showMessageDialog(this, "Cliente não encontrado");
                 }
@@ -561,12 +558,12 @@ public class NotaView extends javax.swing.JFrame {
     private void jTextField8FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextField8FocusLost
         if (!jTextField8.getText().trim().isEmpty()) {
             try {
-                int codigo = Integer.parseInt(jTextField8.getText());
-                ProdutoPersistencia buscar = new ProdutoPersistencia();
-                ProdutoModel busca = buscar.buscarProduto(codigo);
-                if (busca != null) {
-                    jTextField1.setText(busca.getA03_nome());
-                    jTextField3.setText(String.valueOf(busca.getA03_valor_unitario()));
+                int ia03_codigo = Integer.parseInt(jTextField8.getText());
+                ProdutoControl oProdutoControl = new ProdutoControl();
+                ProdutoModel oProdutoModel = oProdutoControl.buscarProduto(ia03_codigo);
+                if (oProdutoModel != null) {
+                    jTextField1.setText(oProdutoModel.getA03_nome());
+                    jTextField3.setText(String.valueOf(oProdutoModel.getA03_valor_unitario()));
                 } else {
                     JOptionPane.showMessageDialog(this, "Produto não encontrado");
                 }
@@ -585,82 +582,80 @@ public class NotaView extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextField4FocusLost
 
     private void jTextField2FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextField2FocusLost
-        int quantidade = Integer.parseInt(jTextField2.getText());
-        double valor_unitario = Double.parseDouble(jTextField3.getText());
-        double valor_item = quantidade * valor_unitario;
-        jTextField4.setText(String.valueOf(valor_item));
+        int ia04_quantidade = Integer.parseInt(jTextField2.getText());
+        double da03_valor_unitario = Double.parseDouble(jTextField3.getText());
+        double da04_valor_item = ia04_quantidade * da03_valor_unitario;
+        jTextField4.setText(String.valueOf(da04_valor_item));
     }//GEN-LAST:event_jTextField2FocusLost
 
     private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
-        int quantidade = Integer.parseInt(jTextField2.getText());
-        double valor_unitario = Double.parseDouble(jTextField3.getText());
-        double valor_item = quantidade * valor_unitario;
-        jTextField4.setText(String.valueOf(valor_item));
+        int ia04_quantidade = Integer.parseInt(jTextField2.getText());
+        double da03_valor_unitario = Double.parseDouble(jTextField3.getText());
+        double da04_valor_item = ia04_quantidade * da03_valor_unitario;
+        jTextField4.setText(String.valueOf(da04_valor_item));
     }//GEN-LAST:event_jTextField2ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        int codigo_pedido = Integer.parseInt(jTextField10.getText());
-        int codigo_produto = Integer.parseInt(jTextField8.getText());
-        int quantidade = Integer.parseInt(jTextField2.getText());
-        double valor_item = Double.parseDouble(jTextField4.getText());
-        int codigo_cliente = Integer.parseInt(jTextField5.getText());
-        String sdata_pedido = jTextField9.getText();
-        
-        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+        int ia02_codigo = Integer.parseInt(jTextField10.getText());
+        int ia03_codigo = Integer.parseInt(jTextField8.getText());
+        int ia04_quantidade = Integer.parseInt(jTextField2.getText());
+        double ia04_valor_item = Double.parseDouble(jTextField4.getText());
+        int ia01_codigo = Integer.parseInt(jTextField5.getText());
+        String sa02_data = jTextField9.getText();
+        SimpleDateFormat oSimpleDateFormat = new SimpleDateFormat("dd/MM/yyyy");
         Date data = null;
         try{
-            data = sdf.parse(sdata_pedido);
+            data = oSimpleDateFormat.parse(sa02_data);
         } catch (Exception e){
             JOptionPane.showMessageDialog(this, "Formato da data errado, uso dd/MM/yyyy");
         }
-        java.sql.Date data_pedido = new java.sql.Date(data.getTime());
-        
-        ItemControl inserir = new ItemControl();
-        inserir.inserirItem(codigo_produto, codigo_pedido, quantidade, valor_item);
-        PedidoControl novo_valor = new PedidoControl();
-        novo_valor.atualizarPedido(codigo_pedido, data_pedido, 0.0, codigo_cliente, valor_item);
+        java.sql.Date da02_data = new java.sql.Date(data.getTime());
+        ItemControl oItemControl = new ItemControl();
+        oItemControl.inserirItem(ia03_codigo, ia02_codigo, ia04_quantidade, ia04_valor_item);
+        PedidoControl oPedidoControl = new PedidoControl();
+        oPedidoControl.atualizarPedido(ia02_codigo, da02_data, 0.0, ia01_codigo, ia04_valor_item);
+        oNotaFiscalView.atualizarTabela(ia02_codigo);
+        oNotaFiscalView.atualizarValorTotal(ia02_codigo);
         JOptionPane.showMessageDialog(this, "Item inserido");
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
-        int codigo_pedido = Integer.parseInt(jTextField10.getText());
-        int codigo_cliente = Integer.parseInt(jTextField5.getText());
-        String sdata_pedido = jTextField9.getText();
-        
-        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+        int ia02_codigo = Integer.parseInt(jTextField10.getText());
+        int ia01_codigo = Integer.parseInt(jTextField5.getText());
+        String sa02_data = jTextField9.getText();
+        SimpleDateFormat oSimpleDateFormat = new SimpleDateFormat("dd/MM/yyyy");
         Date data = null;
         try{
-            data = sdf.parse(sdata_pedido);
+            data = oSimpleDateFormat.parse(sa02_data);
         } catch (Exception e){
             JOptionPane.showMessageDialog(this, "Formato da data errado, uso dd/MM/yyyy");
         }
-        java.sql.Date data_pedido = new java.sql.Date(data.getTime());
-        
-        PedidoControl altera = new PedidoControl();
-        altera.atualizarPedido(codigo_pedido, data_pedido, 0.0, codigo_cliente, 0.0);
+        java.sql.Date da02_data = new java.sql.Date(data.getTime());
+        PedidoControl oPedidoControl = new PedidoControl();
+        oPedidoControl.atualizarPedido(ia02_codigo, da02_data, 0.0, ia01_codigo, 0.0);
         JOptionPane.showMessageDialog(this, "Pedido atualizado");
     }//GEN-LAST:event_jButton8ActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
-        int codigo_pedido = Integer.parseInt(jTextField10.getText());
-        int codigo_produto = Integer.parseInt(jTextField8.getText());
-        double valor_item = Double.parseDouble(jTextField4.getText());
-        int codigo_cliente = Integer.parseInt(jTextField5.getText());
-        String sdata_pedido = jTextField9.getText();
-        
-        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+        int ia02_codigo = Integer.parseInt(jTextField10.getText());
+        int ia03_codigo = Integer.parseInt(jTextField8.getText());
+        double da04_valor_item = Double.parseDouble(jTextField4.getText());
+        int ia01_codigo = Integer.parseInt(jTextField5.getText());
+        String sa02_data = jTextField9.getText();
+        SimpleDateFormat oSimpleDateFormat = new SimpleDateFormat("dd/MM/yyyy");
         Date data = null;
         try{
-            data = sdf.parse(sdata_pedido);
+            data = oSimpleDateFormat.parse(sa02_data);
         } catch (Exception e){
             JOptionPane.showMessageDialog(this, "Formato da data errado, uso dd/MM/yyyy");
         }
-        java.sql.Date data_pedido = new java.sql.Date(data.getTime());
-        
-        ItemControl excluir = new ItemControl();
-        excluir.removerItem(codigo_produto, codigo_pedido);
-        PedidoControl altera = new PedidoControl();
-        altera.excluirItemPedido(codigo_pedido, data_pedido, 0.0, codigo_cliente, valor_item);
+        java.sql.Date da02_data = new java.sql.Date(data.getTime());
+        ItemControl oItemControl = new ItemControl();
+        oItemControl.removerItem(ia03_codigo, ia02_codigo);
+        PedidoControl oPedidoControl = new PedidoControl();
+        oPedidoControl.excluirItemPedido(ia02_codigo, da02_data, 0.0, ia01_codigo, da04_valor_item);
+        oNotaFiscalView.atualizarTabela(ia02_codigo);
+        oNotaFiscalView.atualizarValorTotal(ia02_codigo);
         JOptionPane.showMessageDialog(this, "Item removido");
     }//GEN-LAST:event_jButton6ActionPerformed
 
@@ -694,7 +689,8 @@ public class NotaView extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new NotaView().setVisible(true);
+                NotaFiscalView oNotaFiscalView = new NotaFiscalView();
+                new NotaView(oNotaFiscalView).setVisible(true);
             }
         });
     }

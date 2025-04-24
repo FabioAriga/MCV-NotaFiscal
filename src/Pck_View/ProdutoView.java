@@ -6,8 +6,6 @@ package Pck_View;
 
 import Pck_Control.ProdutoControl;
 import Pck_Model.ProdutoModel;
-import Pck_Persistencia.ProdutoPersistencia;
-import java.text.SimpleDateFormat;
 import javax.swing.JOptionPane;
 
 /**
@@ -200,45 +198,42 @@ public class ProdutoView extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextField3ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        String nome = jTextField1.getText();
-        double valor_unitario = Double.parseDouble(jTextField2.getText());
-        int estoque = Integer.parseInt(jTextField3.getText());
-
-        ProdutoControl inserir = new ProdutoControl();
-        inserir.inserirProduto(nome, valor_unitario, estoque);
+        String sa03_nome = jTextField1.getText();
+        double da03_valor_unitario = Double.parseDouble(jTextField2.getText());
+        int ia03_estoque = Integer.parseInt(jTextField3.getText());
+        ProdutoControl oProdutoControl = new ProdutoControl();
+        oProdutoControl.inserirProduto(sa03_nome, da03_valor_unitario, ia03_estoque);
         JOptionPane.showMessageDialog(this, "Produto Cadastrado");
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        int codigo = Integer.parseInt(jTextField8.getText());
-        String nome = jTextField1.getText();
-        double valor_unitario = Double.parseDouble(jTextField2.getText());
-        int estoque = Integer.parseInt(jTextField3.getText());
-
-        ProdutoControl alterar = new ProdutoControl();
-        alterar.atualizarProduto(codigo, nome, valor_unitario, estoque);
+        int ia03_codigo = Integer.parseInt(jTextField8.getText());
+        String sa03_nome = jTextField1.getText();
+        double da03_valor_unitario = Double.parseDouble(jTextField2.getText());
+        int ia03_estoque = Integer.parseInt(jTextField3.getText());
+        ProdutoControl oProdutoControl = new ProdutoControl();
+        oProdutoControl.atualizarProduto(ia03_codigo, sa03_nome, da03_valor_unitario, ia03_estoque);
         JOptionPane.showMessageDialog(this, "Produto Alterado");
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        int codigo = Integer.parseInt(jTextField8.getText());
-
-        ProdutoControl excluir = new ProdutoControl();
-        excluir.removerProduto(codigo);
+        int ia03_codigo = Integer.parseInt(jTextField8.getText());
+        ProdutoControl oProdutoControl = new ProdutoControl();
+        oProdutoControl.removerProduto(ia03_codigo);
         JOptionPane.showMessageDialog(this, "Produto Removido");
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jTextField8FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextField8FocusLost
         if (!jTextField8.getText().trim().isEmpty()) {
             try {
-                int codigo = Integer.parseInt(jTextField8.getText());
-                ProdutoPersistencia buscar = new ProdutoPersistencia();
-                ProdutoModel busca = buscar.buscarProduto(codigo);
-                if (busca != null) {
-                    jTextField8.setText(String.valueOf(busca.getA03_codigo()));
-                    jTextField1.setText(busca.getA03_nome());
-                    jTextField2.setText(String.valueOf(busca.getA03_valor_unitario()));
-                    jTextField3.setText(String.valueOf(busca.getA03_estoque()));
+                int ia03_codigo = Integer.parseInt(jTextField8.getText());
+                ProdutoControl oProdutoControl = new ProdutoControl();
+                ProdutoModel oProdutoModel = oProdutoControl.buscarProduto(ia03_codigo);
+                if (oProdutoModel != null) {
+                    jTextField8.setText(String.valueOf(oProdutoModel.getA03_codigo()));
+                    jTextField1.setText(oProdutoModel.getA03_nome());
+                    jTextField2.setText(String.valueOf(oProdutoModel.getA03_valor_unitario()));
+                    jTextField3.setText(String.valueOf(oProdutoModel.getA03_estoque()));
                 } else {
                     JOptionPane.showMessageDialog(this, "Produto não encontrado");
                 }

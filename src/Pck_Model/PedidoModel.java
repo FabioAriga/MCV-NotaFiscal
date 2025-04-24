@@ -1,5 +1,7 @@
 package Pck_Model;
 
+import java.sql.Date;
+
 public class PedidoModel {
     private int a02_codigo;
     private java.sql.Date a02_data;
@@ -29,6 +31,17 @@ public class PedidoModel {
         this.a02_valor_total = a02_valor_total;
     }
     public void setA01_codigo(int a01_codigo) {
+        this.a01_codigo = a01_codigo;
+    }
+
+    public PedidoModel() {
+        
+    }
+
+    public PedidoModel(int a02_codigo, Date a02_data, double a02_valor_total, int a01_codigo) {
+        this.a02_codigo = a02_codigo;
+        this.a02_data = a02_data;
+        this.a02_valor_total = a02_valor_total;
         this.a01_codigo = a01_codigo;
     }
 }

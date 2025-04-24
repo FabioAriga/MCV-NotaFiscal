@@ -6,7 +6,6 @@ package Pck_View;
 
     import Pck_Control.ClienteControl;
     import Pck_Model.ClienteModel;
-    import Pck_Persistencia.ClientePersistencia;
     import java.text.SimpleDateFormat;
     import java.util.Date;
     import javax.swing.JOptionPane;
@@ -283,18 +282,18 @@ public class ClienteView extends javax.swing.JFrame {
     private void jTextField4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField4ActionPerformed
         if (!jTextField4.getText().trim().isEmpty()) {
             try {
-                long cpf = Long.parseLong(jTextField4.getText());
-                ClientePersistencia buscar = new ClientePersistencia();
-                ClienteModel busca = buscar.buscarCliente(cpf);
-                if (busca != null) {
-                    jTextField8.setText(String.valueOf(busca.getA01_codigo()));
-                    jTextField1.setText(busca.getA01_nome());
-                    jTextField2.setText(busca.getA01_endereco());
-                    jTextField3.setText(String.valueOf(busca.getA01_telefone()));
-                    SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-                    jTextField5.setText(sdf.format(busca.getA01_data_nasc()));
-                    jTextField6.setText(busca.getA01_email());
-                    jTextField7.setText(String.valueOf(busca.getA01_credito()));
+                long la01_cpf = Long.parseLong(jTextField4.getText());
+                ClienteControl oClienteControl = new ClienteControl();
+                ClienteModel oClienteModel = oClienteControl.buscarCliente(la01_cpf);
+                if (oClienteModel != null) {
+                    jTextField8.setText(String.valueOf(oClienteModel.getA01_codigo()));
+                    jTextField1.setText(oClienteModel.getA01_nome());
+                    jTextField2.setText(oClienteModel.getA01_endereco());
+                    jTextField3.setText(String.valueOf(oClienteModel.getA01_telefone()));
+                    SimpleDateFormat oSimpleDateFormat = new SimpleDateFormat("dd/MM/yyyy");
+                    jTextField5.setText(oSimpleDateFormat.format(oClienteModel.getA01_data_nasc()));
+                    jTextField6.setText(oClienteModel.getA01_email());
+                    jTextField7.setText(String.valueOf(oClienteModel.getA01_credito()));
                 } else {
                     JOptionPane.showMessageDialog(this, "Cliente não encontrado");
                 }
@@ -317,75 +316,70 @@ public class ClienteView extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextField7ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        String nome = jTextField1.getText();
-        String endereco = jTextField2.getText();
-        long telefone = Long.parseLong(jTextField3.getText());
-        long cpf = Long.parseLong(jTextField4.getText());
-        String sdata_nasc = jTextField5.getText();
-        String email = jTextField6.getText();
-        double credito = Double.parseDouble(jTextField7.getText());
-        
-        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+        String sa01_nome = jTextField1.getText();
+        String sa01_endereco = jTextField2.getText();
+        long la01_telefone = Long.parseLong(jTextField3.getText());
+        long la01_cpf = Long.parseLong(jTextField4.getText());
+        String sa01_data_nasc = jTextField5.getText();
+        String sa01_email = jTextField6.getText();
+        double da01_credito = Double.parseDouble(jTextField7.getText());
+        SimpleDateFormat oSimpleDateFormat = new SimpleDateFormat("dd/MM/yyyy");
         Date data = null;
         try{
-            data = sdf.parse(sdata_nasc);
+            data = oSimpleDateFormat.parse(sa01_data_nasc);
         } catch (Exception e){
             JOptionPane.showMessageDialog(this, "Formato da data errado, uso dd/MM/yyyy");
         }
-        java.sql.Date data_nasc = new java.sql.Date(data.getTime());
-        
+        java.sql.Date da01_data_nasc = new java.sql.Date(data.getTime());
         ClienteControl inserir = new ClienteControl();
-        inserir.inserirCliente(nome, endereco, telefone, cpf, data_nasc, email, credito);
+        inserir.inserirCliente(sa01_nome, sa01_endereco, la01_telefone, la01_cpf, da01_data_nasc, sa01_email, da01_credito);
         JOptionPane.showMessageDialog(this, "Cliente cadastrado");
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        int codigo = Integer.parseInt(jTextField8.getText());
-
-        ClienteControl excluir = new ClienteControl();
-        excluir.removerCliente(codigo);
+        int ia01_codigo = Integer.parseInt(jTextField8.getText());
+        ClienteControl oClienteControl = new ClienteControl();
+        oClienteControl.removerCliente(ia01_codigo);
         JOptionPane.showMessageDialog(this, "Cliente Removido");
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        int codigo = Integer.parseInt(jTextField8.getText());
-        String nome = jTextField1.getText();
-        String endereco = jTextField2.getText();
-        long telefone = Long.parseLong(jTextField3.getText());
-        long cpf = Long.parseLong(jTextField4.getText());
-        String sdata_nasc = jTextField5.getText();
-        String email = jTextField6.getText();
-        double credito = Double.parseDouble(jTextField7.getText());
-        
-        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+        int ia01_codigo = Integer.parseInt(jTextField8.getText());
+        String sa01_nome = jTextField1.getText();
+        String sa01_endereco = jTextField2.getText();
+        long la01_telefone = Long.parseLong(jTextField3.getText());
+        long la01_cpf = Long.parseLong(jTextField4.getText());
+        String sa01_data_nasc = jTextField5.getText();
+        String sa01_email = jTextField6.getText();
+        double da01_credito = Double.parseDouble(jTextField7.getText());
+        SimpleDateFormat oSimpleDateFormat = new SimpleDateFormat("dd/MM/yyyy");
         Date data = null;
         try{
-            data = sdf.parse(sdata_nasc);
+            data = oSimpleDateFormat.parse(sa01_data_nasc);
         } catch (Exception e){
             JOptionPane.showMessageDialog(this, "Formato da data errado, uso dd/MM/yyyy");
         }
-        java.sql.Date data_nasc = new java.sql.Date(data.getTime());
-        
-        ClienteControl alterar = new ClienteControl();
-        alterar.atualizarCliente(codigo, nome, endereco, telefone, cpf, data_nasc, email, credito);
+        java.sql.Date da01_data_nasc = new java.sql.Date(data.getTime());
+        ClienteControl oClienteControl = new ClienteControl();
+        oClienteControl.atualizarCliente(ia01_codigo, sa01_nome, sa01_endereco, la01_telefone, la01_cpf, da01_data_nasc, sa01_email, da01_credito);
         JOptionPane.showMessageDialog(this, "Cliente Alterado");
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jTextField4FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextField4FocusLost
         if (!jTextField4.getText().trim().isEmpty()) {
             try {
-                long cpf = Long.parseLong(jTextField4.getText());
-                ClientePersistencia buscar = new ClientePersistencia();
-                ClienteModel busca = buscar.buscarCliente(cpf);
-                if (busca != null) {
-                    jTextField8.setText(String.valueOf(busca.getA01_codigo()));
-                    jTextField1.setText(busca.getA01_nome());
-                    jTextField2.setText(busca.getA01_endereco());
-                    jTextField3.setText(String.valueOf(busca.getA01_telefone()));
-                    SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-                    jTextField5.setText(sdf.format(busca.getA01_data_nasc()));
-                    jTextField6.setText(busca.getA01_email());
-                    jTextField7.setText(String.valueOf(busca.getA01_credito()));
+                long la01_cpf = Long.parseLong(jTextField4.getText());
+                ClienteControl oClienteControl = new ClienteControl();
+                ClienteModel oClienteModel = oClienteControl.buscarCliente(la01_cpf);
+                if (oClienteModel != null) {
+                    jTextField8.setText(String.valueOf(oClienteModel.getA01_codigo()));
+                    jTextField1.setText(oClienteModel.getA01_nome());
+                    jTextField2.setText(oClienteModel.getA01_endereco());
+                    jTextField3.setText(String.valueOf(oClienteModel.getA01_telefone()));
+                    SimpleDateFormat oSimpleDateFormat = new SimpleDateFormat("dd/MM/yyyy");
+                    jTextField5.setText(oSimpleDateFormat.format(oClienteModel.getA01_data_nasc()));
+                    jTextField6.setText(oClienteModel.getA01_email());
+                    jTextField7.setText(String.valueOf(oClienteModel.getA01_credito()));
                 } else {
                     JOptionPane.showMessageDialog(this, "Cliente não encontrado");
                 }

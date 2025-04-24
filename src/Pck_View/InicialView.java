@@ -23,7 +23,6 @@ public class InicialView extends javax.swing.JFrame {
      */
     public InicialView() {
         initComponents();
-        
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowOpened(java.awt.event.WindowEvent evt) {
                 formWindowOpened(evt);
@@ -109,7 +108,7 @@ public class InicialView extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(88, 88, 88)
-                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(114, 114, 114))
@@ -170,30 +169,30 @@ public class InicialView extends javax.swing.JFrame {
 
     private void imagembotao(){
         try {
-            BufferedImage Cliente = ImageIO.read(getClass().getResource("/Imagens/Cliente.png"));
-            Image Clienter = Cliente.getScaledInstance(jButton4.getWidth(), jButton4.getHeight(), Image.SCALE_SMOOTH);
-            jButton4.setIcon(new ImageIcon(Clienter));
+            BufferedImage oBufferedImageC = ImageIO.read(getClass().getResource("/Pck_Imagem/Cliente.png"));
+            Image oImageC = oBufferedImageC.getScaledInstance(jButton4.getWidth(), jButton4.getHeight(), Image.SCALE_SMOOTH);
+            jButton4.setIcon(new ImageIcon(oImageC));
             jButton4.setText("");
             jButton4.setBorderPainted(false);
             jButton4.setContentAreaFilled(false);
             jButton4.setFocusPainted(false);
-            BufferedImage Nota = ImageIO.read(getClass().getResource("/Imagens/Nota.png"));
-            Image Notar = Nota.getScaledInstance(jButton2.getWidth(), jButton2.getHeight(), Image.SCALE_SMOOTH);
-            jButton2.setIcon(new ImageIcon(Notar));
+            BufferedImage oBufferedImageN = ImageIO.read(getClass().getResource("/Pck_Imagem/Nota.png"));
+            Image oImageN = oBufferedImageN.getScaledInstance(jButton2.getWidth(), jButton2.getHeight(), Image.SCALE_SMOOTH);
+            jButton2.setIcon(new ImageIcon(oImageN));
             jButton2.setText("");
             jButton2.setBorderPainted(false);
             jButton2.setContentAreaFilled(false);
             jButton2.setFocusPainted(false);
-            BufferedImage NotaFiscal = ImageIO.read(getClass().getResource("/Imagens/NotaFiscal.png"));
-            Image NotaFiscalr = NotaFiscal.getScaledInstance(jButton5.getWidth(), jButton5.getHeight(), Image.SCALE_SMOOTH);
-            jButton5.setIcon(new ImageIcon(NotaFiscalr));
+            BufferedImage oBufferedImageNF = ImageIO.read(getClass().getResource("/Pck_Imagem/NotaFiscal.png"));
+            Image oImageNF = oBufferedImageNF.getScaledInstance(jButton5.getWidth(), jButton5.getHeight(), Image.SCALE_SMOOTH);
+            jButton5.setIcon(new ImageIcon(oImageNF));
             jButton5.setText("");
             jButton5.setBorderPainted(false);
             jButton5.setContentAreaFilled(false);
             jButton5.setFocusPainted(false);
-            BufferedImage Produto = ImageIO.read(getClass().getResource("/Imagens/Produto.png"));
-            Image Produtor = Produto.getScaledInstance(jButton6.getWidth(), jButton6.getHeight(), Image.SCALE_SMOOTH);
-            jButton6.setIcon(new ImageIcon(Produtor));
+            BufferedImage oBufferedImageP = ImageIO.read(getClass().getResource("/Pck_Imagem/Produto.png"));
+            Image oImageP = oBufferedImageP.getScaledInstance(jButton6.getWidth(), jButton6.getHeight(), Image.SCALE_SMOOTH);
+            jButton6.setIcon(new ImageIcon(oImageP));
             jButton6.setText("");
             jButton6.setBorderPainted(false);
             jButton6.setContentAreaFilled(false);
@@ -208,22 +207,24 @@ public class InicialView extends javax.swing.JFrame {
     }
     
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        NotaView Nota = new NotaView();
-        Nota.setVisible(true);
+        NotaFiscalView oNotaFiscalView = new NotaFiscalView();
+        NotaView oNotaView = new NotaView(oNotaFiscalView);
+        oNotaView.setVisible(true);
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        ClienteView Cliente = new ClienteView();
-        Cliente.setVisible(true);
+        ClienteView oClienteView = new ClienteView();
+        oClienteView.setVisible(true);
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-        // TODO add your handling code here:
+        NotaFiscalView oNotaFiscalView = new NotaFiscalView();
+        oNotaFiscalView.setVisible(true);
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
-        ProdutoView Produto = new ProdutoView();
-        Produto.setVisible(true);
+        ProdutoView oProdutoView = new ProdutoView();
+        oProdutoView.setVisible(true);
     }//GEN-LAST:event_jButton6ActionPerformed
 
     

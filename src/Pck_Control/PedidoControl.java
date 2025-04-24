@@ -1,5 +1,6 @@
 package Pck_Control;
 
+import Pck_Model.ClienteModel;
 import Pck_Model.PedidoModel; 
 import Pck_Persistencia.PedidoPersistencia; 
 
@@ -34,4 +35,12 @@ public class PedidoControl {
     oPedidoModel.setA01_codigo(ia01_codigo); 
     oPedidoPersistencia.excluirItemPedido(oPedidoModel, da04_valor_item); 
     } 
+    
+    public PedidoModel buscarValorTotal(int ia02_codigo){
+        return oPedidoPersistencia.buscarValorTotal(ia02_codigo); 
+    }
+    
+    public ClienteModel buscarCliente(int ia02_codigo){
+        return oPedidoPersistencia.buscarCliente(ia02_codigo); 
+    }
 }

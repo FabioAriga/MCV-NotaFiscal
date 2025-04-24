@@ -1,20 +1,13 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Main.java to edit this template
- */
 package prj_nota;
 
-/**
- *
- * @author Lab03fatec
- */
-public class Prj_Nota {
+import Pck_View.InicialView;
 
-    /**
-     * @param args the command line arguments
-     */
+public class Prj_Nota {
     public static void main(String[] args) {
-        // TODO code application logic here
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new InicialView().setVisible(true);
+            }
+        });
     }
-    
 }

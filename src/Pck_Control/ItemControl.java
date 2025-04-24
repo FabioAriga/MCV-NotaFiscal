@@ -1,7 +1,9 @@
 package Pck_Control;
 
 import Pck_Model.ItemModel; 
+import Pck_Model.ItemProdutoModel;
 import Pck_Persistencia.ItemPersistencia; 
+import java.util.List;
 
 public class ItemControl {
     ItemModel oItemModel = new ItemModel(); 
@@ -29,4 +31,12 @@ public class ItemControl {
     oItemModel.setA02_codigo(ia02_codigo); 
     oItemPersistencia.removerItem(oItemModel); 
     } 
+    
+    public double somarValores(int ia02_codigo){
+        return oItemPersistencia.somarValores(ia02_codigo); 
+    }
+    
+    public List<ItemProdutoModel> listarItens(int ia02_codigo){
+        return oItemPersistencia.listarItens(ia02_codigo); 
+    }
 }

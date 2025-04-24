@@ -5,7 +5,7 @@ import java.sql.DriverManager;
 import java.sql.SQLException; 
 
 public class ConexaoMySql {
-    public Connection obj_connection = null; 
+    public Connection oConnection = null; 
     private final String DRIVER = "com.mysql.jdbc.Driver"; 
     private final String URL= "jdbc:mysql//localhost:3306/db_padra_venda"; 
     private final String LOGIN	= "root"; 
@@ -14,7 +14,7 @@ public class ConexaoMySql {
     public boolean getConnection() { 
         try { 
             Class.forName(DRIVER); 
-            obj_connection= DriverManager.getConnection(URL,LOGIN,SENHA); 
+            oConnection= DriverManager.getConnection(URL,LOGIN,SENHA); 
             System.out.println("Conectou"); 
             return true; 
         } catch (ClassNotFoundException erro) { 

@@ -34,4 +34,12 @@ public class ClienteControl {
     oClienteModel.setA01_codigo(ia01_codigo); 
     oClientePersistencia.removerCliente(oClienteModel); 
     } 
+    
+    public ClienteModel buscarCliente(long la01_cpf){
+        return oClientePersistencia.buscarCliente(la01_cpf); 
+    }
+    
+    public double buscarCredito(long la01_cpf){
+        return oClientePersistencia.buscarCredito(la01_cpf); 
+    }
 }

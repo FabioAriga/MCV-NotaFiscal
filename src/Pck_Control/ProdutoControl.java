@@ -26,4 +26,8 @@ public class ProdutoControl {
     oProdutoModel.setA03_codigo(ia03_codigo); 
     oProdutoPersistencia.removerProduto(oProdutoModel); 
     } 
+    
+    public ProdutoModel buscarProduto(int ia03_codigo){
+        return oProdutoPersistencia.buscarProduto(ia03_codigo); 
+    }
 }

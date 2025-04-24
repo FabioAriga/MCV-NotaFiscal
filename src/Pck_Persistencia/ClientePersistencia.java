@@ -12,7 +12,7 @@ public class ClientePersistencia {
 
     public void inserirCliente(ClienteModel oClienteModel) {
         try {
-            oCall = oConexaoMySql.obj_connection.prepareCall("{CALL Proc_inserirCliente(?, ?, ?, ?, ?, ?, ?, ?)}");
+            oCall = oConexaoMySql.oConnection.prepareCall("{CALL Proc_inserirCliente(?, ?, ?, ?, ?, ?, ?, ?)}");
             oCall.setString(1, oClienteModel.getA01_nome());
             oCall.setString(2, oClienteModel.getA01_endereco());
             oCall.setLong(3, oClienteModel.getA01_telefone());
@@ -28,7 +28,7 @@ public class ClientePersistencia {
     
     public void alterarCliente(ClienteModel oClienteModel) {
         try {
-            oCall = oConexaoMySql.obj_connection.prepareCall("{CALL Proc_alterarCliente(?, ?, ?, ?, ?, ?, ?, ?)}");
+            oCall = oConexaoMySql.oConnection.prepareCall("{CALL Proc_alterarCliente(?, ?, ?, ?, ?, ?, ?, ?)}");
             oCall.setInt(1, oClienteModel.getA01_codigo());
             oCall.setString(2, oClienteModel.getA01_nome());
             oCall.setString(3, oClienteModel.getA01_endereco());
@@ -45,7 +45,7 @@ public class ClientePersistencia {
     
     public void removerCliente(ClienteModel oClienteModel) {
         try {
-            oCall = oConexaoMySql.obj_connection.prepareCall("{CALL Proc_removerCliente(?)}");
+            oCall = oConexaoMySql.oConnection.prepareCall("{CALL Proc_removerCliente(?)}");
             oCall.setInt(1, oClienteModel.getA01_codigo());
             oCall.execute();
         } catch (SQLException erro) {
@@ -53,24 +53,39 @@ public class ClientePersistencia {
         }
     }
     
-    public ClienteModel buscarCliente(long cpf) {
+    public ClienteModel buscarCliente(long la01_cpf) {
         try {
-            oCall = oConexaoMySql.obj_connection.prepareCall("{CALL Proc_buscarCliente(?)}");
-            oCall.setLong(1, cpf);
+            oCall = oConexaoMySql.oConnection.prepareCall("{CALL Proc_buscarCliente(?)}");
+            oCall.setLong(1, la01_cpf);
             ResultSet rs = oCall.executeQuery();
             if (rs.next()) {
-                int codigo = rs.getInt("codigo");
-                String nome = rs.getString("nome");
-                String endereco = rs.getString("endereco");
-                long telefone = rs.getLong("telefone");
-                java.sql.Date data_nasc = rs.getDate("data_nasc");
-                String email = rs.getString("email");
-                double credito = rs.getDouble("credito");
-                return new ClienteModel(codigo, nome, endereco, telefone, cpf, data_nasc, email, credito);
+                int a01_codigo = rs.getInt("A01_codigo");
+                String a01_nome = rs.getString("A01_nome");
+                String a01_endereco = rs.getString("A01_endereco");
+                long a01_telefone = rs.getLong("A01_telefone");
+                java.sql.Date a01_data_nasc = rs.getDate("A01_data_nasc");
+                String a01_email = rs.getString("A01_email");
+                double a01_credito = rs.getDouble("A01_credito");
+                return new ClienteModel(a01_codigo, a01_nome, a01_endereco, a01_telefone, la01_cpf, a01_data_nasc, a01_email, a01_credito);
                 }
         } catch (SQLException erro) {
             erro.printStackTrace();
         }
         return null;
+    }
+    
+    public double buscarCredito(long la01_cpf){
+        try {
+            oCall = oConexaoMySql.oConnection.prepareCall("{CALL Proc_buscarCliente(?)}");
+            oCall.setLong(1, la01_cpf);
+            ResultSet rs = oCall.executeQuery();
+            if (rs.next()) {
+                double a01_credito = rs.getDouble("A01_credito");
+                return a01_credito;
+                }
+        } catch (SQLException erro) {
+            erro.printStackTrace();
+        }
+        return 0;
     }
 }

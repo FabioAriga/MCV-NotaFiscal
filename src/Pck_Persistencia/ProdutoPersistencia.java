@@ -12,7 +12,7 @@ public class ProdutoPersistencia {
 
     public void inserirProduto(ProdutoModel oProdutoModel) {
         try {
-            oCall = oConexaoMySql.obj_connection.prepareCall("{CALL Proc_inserirProduto(?, ?, ?)}");
+            oCall = oConexaoMySql.oConnection.prepareCall("{CALL Proc_inserirProduto(?, ?, ?)}");
             oCall.setString(1, oProdutoModel.getA03_nome());
             oCall.setDouble(2, oProdutoModel.getA03_valor_unitario());
             oCall.setInt(3, oProdutoModel.getA03_estoque());
@@ -24,7 +24,7 @@ public class ProdutoPersistencia {
     
     public void alterarProduto(ProdutoModel oProdutoModel) {
         try {
-            oCall = oConexaoMySql.obj_connection.prepareCall("{CALL Proc_alterarProduto(?, ?, ?, ?)}");
+            oCall = oConexaoMySql.oConnection.prepareCall("{CALL Proc_alterarProduto(?, ?, ?, ?)}");
             oCall.setInt(1, oProdutoModel.getA03_codigo());
             oCall.setString(1, oProdutoModel.getA03_nome());
             oCall.setDouble(2, oProdutoModel.getA03_valor_unitario());
@@ -37,7 +37,7 @@ public class ProdutoPersistencia {
     
     public void removerProduto(ProdutoModel oProdutoModel) {
         try {
-            oCall = oConexaoMySql.obj_connection.prepareCall("{CALL Proc_removerProduto(?)}");
+            oCall = oConexaoMySql.oConnection.prepareCall("{CALL Proc_removerProduto(?)}");
             oCall.setInt(1, oProdutoModel.getA03_codigo());
             oCall.execute();
         } catch (SQLException erro) {
@@ -45,16 +45,16 @@ public class ProdutoPersistencia {
         }
     }
     
-    public ProdutoModel buscarProduto(int codigo) {
+    public ProdutoModel buscarProduto(int ia03_codigo) {
         try {
-            oCall = oConexaoMySql.obj_connection.prepareCall("{CALL Proc_buscarProduto(?)}");
-            oCall.setInt(1, codigo);
+            oCall = oConexaoMySql.oConnection.prepareCall("{CALL Proc_buscarProduto(?)}");
+            oCall.setInt(1, ia03_codigo);
             ResultSet rs = oCall.executeQuery();
             if (rs.next()) {
-                String nome = rs.getString("nome");
-                Double valor_unitario = rs.getDouble("valor_unitario");
-                int estoque = rs.getInt("estoque");
-                return new ProdutoModel(codigo, nome, valor_unitario, estoque);
+                String a03_nome = rs.getString("A03_nome");
+                Double a03_valor_unitario = rs.getDouble("A03_valor_unitario");
+                int a03_estoque = rs.getInt("A03_estoque");
+                return new ProdutoModel(ia03_codigo, a03_nome, a03_valor_unitario, a03_estoque);
             }
         } catch (SQLException e) {
             e.printStackTrace();
