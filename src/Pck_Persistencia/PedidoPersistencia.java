@@ -85,7 +85,7 @@ public class PedidoPersistencia{
     
     public ClienteModel buscarCliente(int ia02_codigo){
         try {
-            oCall = oConexaoMySql.oConnection.prepareCall("{CALL Proc_buscarCliente(?)}");
+            oCall = oConexaoMySql.oConnection.prepareCall("{CALL Proc_buscarClienteP(?)}");
             oCall.setLong(1, ia02_codigo);
             ResultSet rs = oCall.executeQuery();
             if (rs.next()) {

@@ -76,7 +76,7 @@ public class ClientePersistencia {
     
     public double buscarCredito(long la01_cpf){
         try {
-            oCall = oConexaoMySql.oConnection.prepareCall("{CALL Proc_buscarCliente(?)}");
+            oCall = oConexaoMySql.oConnection.prepareCall("{CALL Proc_buscarCredito(?)}");
             oCall.setLong(1, la01_cpf);
             ResultSet rs = oCall.executeQuery();
             if (rs.next()) {

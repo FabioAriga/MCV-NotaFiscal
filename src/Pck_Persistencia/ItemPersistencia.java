@@ -54,7 +54,7 @@ public class ItemPersistencia {
     public double somarValores(int ia02_codigo) {
         double a02_valor_total = 0;
         try {
-            oCall = oConexaoMySql.oConnection.prepareCall("{CALL Proc_somarValorTotal(?, ?)}");
+            oCall = oConexaoMySql.oConnection.prepareCall("{CALL Proc_somarValores(?, ?)}");
             oCall.setInt(1, ia02_codigo);
             oCall.registerOutParameter(2, java.sql.Types.DOUBLE);
             oCall.execute();
