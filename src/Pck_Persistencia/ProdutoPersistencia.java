@@ -61,4 +61,14 @@ public class ProdutoPersistencia {
         }
         return null;
     }
+    
+    public void baixaEstoque(int ia02_codigo){
+        try {
+            oCall = oConexaoMySql.oConnection.prepareCall("{CALL Proc_removerProduto(?)}");
+            oCall.setInt(1, ia02_codigo);
+            oCall.execute();
+        } catch (SQLException erro) {
+            erro.printStackTrace();
+        }
+    }
 }

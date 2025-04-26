@@ -30,4 +30,8 @@ public class ProdutoControl {
     public ProdutoModel buscarProduto(int ia03_codigo){
         return oProdutoPersistencia.buscarProduto(ia03_codigo); 
     }
+    
+    public void baixaEstoque(int ia02_codigo){
+        oProdutoPersistencia.baixaEstoque(ia02_codigo);
+    }
 }

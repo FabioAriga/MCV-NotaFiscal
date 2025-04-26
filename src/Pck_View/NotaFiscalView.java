@@ -7,6 +7,7 @@ package Pck_View;
 import Pck_Control.ClienteControl;
 import Pck_Control.ItemControl;
 import Pck_Control.PedidoControl;
+import Pck_Control.ProdutoControl;
 import Pck_Model.ClienteModel;
 import Pck_Model.ItemProdutoModel;
 import Pck_Model.PedidoModel;
@@ -245,6 +246,7 @@ public class NotaFiscalView extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        int ia02_codigo = Integer.parseInt(jTextField3.getText());
         double da02_valor_total = Double.parseDouble(jTextField4.getText());
         long la01_cpf = Long.parseLong(jTextField2.getText());
         String sa01_data_nasc = "00/00/0000";
@@ -275,6 +277,8 @@ public class NotaFiscalView extends javax.swing.JFrame {
         } else {
             JOptionPane.showMessageDialog(this, "Pagar na maquininha o valor R$ " + String.format("%.2f", da02_valor_total));
         }
+        ProdutoControl oProdutoControl = new ProdutoControl();
+        oProdutoControl.baixaEstoque(ia02_codigo);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jTextField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField3ActionPerformed
