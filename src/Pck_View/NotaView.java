@@ -358,6 +358,11 @@ public class NotaView extends javax.swing.JFrame {
                 jTextField8FocusLost(evt);
             }
         });
+        jTextField8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField8ActionPerformed(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 4;
         gridBagConstraints.gridy = 10;
@@ -534,10 +539,6 @@ public class NotaView extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton9ActionPerformed
 
     private void jTextField7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField7ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField7ActionPerformed
-
-    private void jTextField7FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextField7FocusLost
         if (!jTextField7.getText().trim().isEmpty()) {
             try {
                 long la01_cpf = Long.parseLong(jTextField7.getText());
@@ -553,24 +554,14 @@ public class NotaView extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(this, "CPF inválido");
             }
         }
+    }//GEN-LAST:event_jTextField7ActionPerformed
+
+    private void jTextField7FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextField7FocusLost
+        
     }//GEN-LAST:event_jTextField7FocusLost
 
     private void jTextField8FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextField8FocusLost
-        if (!jTextField8.getText().trim().isEmpty()) {
-            try {
-                int ia03_codigo = Integer.parseInt(jTextField8.getText());
-                ProdutoControl oProdutoControl = new ProdutoControl();
-                ProdutoModel oProdutoModel = oProdutoControl.buscarProduto(ia03_codigo);
-                if (oProdutoModel != null) {
-                    jTextField1.setText(oProdutoModel.getA03_nome());
-                    jTextField3.setText(String.valueOf(oProdutoModel.getA03_valor_unitario()));
-                } else {
-                    JOptionPane.showMessageDialog(this, "Produto não encontrado");
-                }
-            } catch (NumberFormatException e) {
-                JOptionPane.showMessageDialog(this, "Codigo inválido");
-            }
-        }
+        
     }//GEN-LAST:event_jTextField8FocusLost
 
     private void jTextField4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField4ActionPerformed
@@ -582,10 +573,7 @@ public class NotaView extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextField4FocusLost
 
     private void jTextField2FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextField2FocusLost
-        int ia04_quantidade = Integer.parseInt(jTextField2.getText());
-        double da03_valor_unitario = Double.parseDouble(jTextField3.getText());
-        double da04_valor_item = ia04_quantidade * da03_valor_unitario;
-        jTextField4.setText(String.valueOf(da04_valor_item));
+        
     }//GEN-LAST:event_jTextField2FocusLost
 
     private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
@@ -658,6 +646,30 @@ public class NotaView extends javax.swing.JFrame {
         oNotaFiscalView.atualizarValorTotal(ia02_codigo);
         JOptionPane.showMessageDialog(this, "Item removido");
     }//GEN-LAST:event_jButton6ActionPerformed
+
+    private void jTextField8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField8ActionPerformed
+        if (!jTextField8.getText().trim().isEmpty()) {
+            jTextField1.setText("");
+            jTextField3.setText("");
+            try {
+                int ia03_codigo = Integer.parseInt(jTextField8.getText());
+                ProdutoControl oProdutoControl = new ProdutoControl();
+                ProdutoModel oProdutoModel = oProdutoControl.buscarProduto(ia03_codigo);
+                if (oProdutoModel != null) {
+                    jTextField1.setText(oProdutoModel.getA03_nome());
+                    jTextField3.setText(String.valueOf(oProdutoModel.getA03_valor_unitario()));
+                } else {
+                    jTextField1.setText("");
+                    jTextField3.setText("");
+                    JOptionPane.showMessageDialog(this, "Produto não encontrado");
+                }
+            } catch (NumberFormatException e) {
+                jTextField1.setText("");
+                jTextField3.setText("");
+                JOptionPane.showMessageDialog(this, "Codigo inválido");
+            }
+        }
+    }//GEN-LAST:event_jTextField8ActionPerformed
 
     /**
      * @param args the command line arguments

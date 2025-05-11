@@ -4,6 +4,7 @@ import Pck_Model.ItemModel;
 import Pck_Model.ItemProdutoModel;
 import Pck_DAO.ConexaoMySql;
 import java.sql.CallableStatement;
+import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.ResultSet;
 import java.util.ArrayList;
@@ -12,10 +13,11 @@ import java.util.List;
 public class ItemPersistencia {
     CallableStatement oCall;
     ConexaoMySql oConexaoMySql = new ConexaoMySql();
+    Connection conn = oConexaoMySql.getConnection();
 
     public void inserirItem(ItemModel oItemModel) {
         try {
-            oCall = oConexaoMySql.oConnection.prepareCall("{CALL Proc_inserirItem(?, ?, ?, ?)}");
+            oCall = conn.prepareCall("{CALL Proc_inserirItem(?, ?, ?, ?)}");
             oCall.setInt(1, oItemModel.getA03_codigo());
             oCall.setInt(2, oItemModel.getA02_codigo());
             oCall.setInt(3, oItemModel.getA04_quantidade());
@@ -28,7 +30,7 @@ public class ItemPersistencia {
     
     public void alterarItem(ItemModel oItemModel) {
         try {
-            oCall = oConexaoMySql.oConnection.prepareCall("{CALL Proc_alterarItem(?, ?, ?, ?, ?)}");
+            oCall = conn.prepareCall("{CALL Proc_alterarItem(?, ?, ?, ?, ?)}");
             oCall.setInt(1, oItemModel.getA04_codigo());
             oCall.setInt(2, oItemModel.getA03_codigo());
             oCall.setInt(3, oItemModel.getA02_codigo());
@@ -42,7 +44,7 @@ public class ItemPersistencia {
     
     public void removerItem(ItemModel oItemModel) {
         try {
-            oCall = oConexaoMySql.oConnection.prepareCall("{CALL Proc_removerItem(?, ?)}");
+            oCall = conn.prepareCall("{CALL Proc_removerItem(?, ?)}");
             oCall.setInt(1, oItemModel.getA03_codigo());
             oCall.setInt(2, oItemModel.getA02_codigo());
             oCall.execute();
@@ -54,7 +56,7 @@ public class ItemPersistencia {
     public double somarValores(int ia02_codigo) {
         double a02_valor_total = 0;
         try {
-            oCall = oConexaoMySql.oConnection.prepareCall("{CALL Proc_somarValores(?, ?)}");
+            oCall = conn.prepareCall("{CALL Proc_somarValores(?, ?)}");
             oCall.setInt(1, ia02_codigo);
             oCall.registerOutParameter(2, java.sql.Types.DOUBLE);
             oCall.execute();
@@ -68,7 +70,7 @@ public class ItemPersistencia {
     public List<ItemProdutoModel> listarItens(int ia02_codigo) {
     List<ItemProdutoModel> lista = new ArrayList<>();
     try {
-        oCall = oConexaoMySql.oConnection.prepareCall("{CALL Proc_listarItens(?)}");
+        oCall = conn.prepareCall("{CALL Proc_listarItens(?)}");
         oCall.setInt(1, ia02_codigo);
         ResultSet rs = oCall.executeQuery();
         while (rs.next()) {

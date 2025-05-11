@@ -6,15 +6,17 @@ import Pck_Model.ClienteModel;
 import java.sql.CallableStatement;
 import java.sql.SQLException;
 import java.sql.ResultSet;
+import java.sql.Connection;
 
 public class PedidoPersistencia{
     CallableStatement oCall;
     ConexaoMySql oConexaoMySql = new ConexaoMySql();
+    Connection conn = oConexaoMySql.getConnection();
 
     public int inserirPedido(PedidoModel oPedidoModel) {
         int codigo_pedido = -1;
         try {
-            oCall = oConexaoMySql.oConnection.prepareCall("{CALL Proc_inserirPedido(?, ?, ?, ?)}");
+            oCall = conn.prepareCall("{CALL Proc_inserirPedido(?, ?, ?, ?)}");
             oCall.setDate(1, oPedidoModel.getA02_data());
             oCall.setDouble(2, oPedidoModel.getA02_valor_total());
             oCall.setInt(3, oPedidoModel.getA01_codigo());
@@ -29,7 +31,7 @@ public class PedidoPersistencia{
     
     public void alterarPedido(PedidoModel oPedidoModel, double da04_valor_item) {
         try {
-            oCall = oConexaoMySql.oConnection.prepareCall("{CALL Proc_alterarPedido(?, ?, ?, ?, ?)}");
+            oCall = conn.prepareCall("{CALL Proc_alterarPedido(?, ?, ?, ?, ?)}");
             oCall.setInt(1, oPedidoModel.getA02_codigo());
             oCall.setDate(2, oPedidoModel.getA02_data());
             oCall.setDouble(3, oPedidoModel.getA02_valor_total());
@@ -43,7 +45,7 @@ public class PedidoPersistencia{
     
     public void removerPedido(PedidoModel oPedidoModel) {
         try {
-            oCall = oConexaoMySql.oConnection.prepareCall("{CALL Proc_removerPedido(?)}");
+            oCall = conn.prepareCall("{CALL Proc_removerPedido(?)}");
             oCall.setInt(1, oPedidoModel.getA02_codigo());   
             oCall.execute();
         } catch (SQLException erro) {
@@ -53,7 +55,7 @@ public class PedidoPersistencia{
     
     public void excluirItemPedido(PedidoModel oPedidoModel, double da04_valor_item) {
         try {
-            oCall = oConexaoMySql.oConnection.prepareCall("{CALL Proc_excluirItemPedido(?, ?, ?, ?, ?)}");
+            oCall = conn.prepareCall("{CALL Proc_excluirItemPedido(?, ?, ?, ?, ?)}");
             oCall.setInt(1, oPedidoModel.getA02_codigo());
             oCall.setDate(2, oPedidoModel.getA02_data());
             oCall.setDouble(3, oPedidoModel.getA02_valor_total());
@@ -67,7 +69,7 @@ public class PedidoPersistencia{
     
     public PedidoModel buscarValorTotal(int ia02_codigo){
         try {
-            oCall = oConexaoMySql.oConnection.prepareCall("{CALL Proc_buscarValorTotal(?)}");
+            oCall = conn.prepareCall("{CALL Proc_buscarValorTotal(?)}");
             oCall.setInt(1, ia02_codigo);
             ResultSet rs = oCall.executeQuery();
             if (rs.next()) {
@@ -83,9 +85,9 @@ public class PedidoPersistencia{
         return null;
     }
     
-    public ClienteModel buscarCliente(int ia02_codigo){
+    public ClienteModel buscarClienteP(int ia02_codigo){
         try {
-            oCall = oConexaoMySql.oConnection.prepareCall("{CALL Proc_buscarClienteP(?)}");
+            oCall = conn.prepareCall("{CALL Proc_buscarClienteP(?)}");
             oCall.setLong(1, ia02_codigo);
             ResultSet rs = oCall.executeQuery();
             if (rs.next()) {

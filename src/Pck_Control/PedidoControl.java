@@ -40,7 +40,7 @@ public class PedidoControl {
         return oPedidoPersistencia.buscarValorTotal(ia02_codigo); 
     }
     
-    public ClienteModel buscarCliente(int ia02_codigo){
-        return oPedidoPersistencia.buscarCliente(ia02_codigo); 
+    public ClienteModel buscarClienteP(int ia02_codigo){
+        return oPedidoPersistencia.buscarClienteP(ia02_codigo); 
     }
 }

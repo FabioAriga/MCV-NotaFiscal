@@ -42,4 +42,8 @@ public class ClienteControl {
     public double buscarCredito(long la01_cpf){
         return oClientePersistencia.buscarCredito(la01_cpf); 
     }
+    
+    public void atualizarCredito(long la01_cpf, double da01_credito){
+        oClientePersistencia.atualizarCredito(la01_cpf, da01_credito);
+    }
 }

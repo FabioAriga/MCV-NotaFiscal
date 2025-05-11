@@ -5,14 +5,16 @@ import Pck_DAO.ConexaoMySql;
 import java.sql.CallableStatement;
 import java.sql.SQLException;
 import java.sql.ResultSet;
+import java.sql.Connection;
 
 public class ProdutoPersistencia {
     CallableStatement oCall;
     ConexaoMySql oConexaoMySql = new ConexaoMySql();
+    Connection conn = oConexaoMySql.getConnection();
 
     public void inserirProduto(ProdutoModel oProdutoModel) {
         try {
-            oCall = oConexaoMySql.oConnection.prepareCall("{CALL Proc_inserirProduto(?, ?, ?)}");
+            oCall = conn.prepareCall("{CALL Proc_inserirProduto(?, ?, ?)}");
             oCall.setString(1, oProdutoModel.getA03_nome());
             oCall.setDouble(2, oProdutoModel.getA03_valor_unitario());
             oCall.setInt(3, oProdutoModel.getA03_estoque());
@@ -24,7 +26,7 @@ public class ProdutoPersistencia {
     
     public void alterarProduto(ProdutoModel oProdutoModel) {
         try {
-            oCall = oConexaoMySql.oConnection.prepareCall("{CALL Proc_alterarProduto(?, ?, ?, ?)}");
+            oCall =conn.prepareCall("{CALL Proc_alterarProduto(?, ?, ?, ?)}");
             oCall.setInt(1, oProdutoModel.getA03_codigo());
             oCall.setString(1, oProdutoModel.getA03_nome());
             oCall.setDouble(2, oProdutoModel.getA03_valor_unitario());
@@ -37,7 +39,7 @@ public class ProdutoPersistencia {
     
     public void removerProduto(ProdutoModel oProdutoModel) {
         try {
-            oCall = oConexaoMySql.oConnection.prepareCall("{CALL Proc_removerProduto(?)}");
+            oCall = conn.prepareCall("{CALL Proc_removerProduto(?)}");
             oCall.setInt(1, oProdutoModel.getA03_codigo());
             oCall.execute();
         } catch (SQLException erro) {
@@ -47,7 +49,7 @@ public class ProdutoPersistencia {
     
     public ProdutoModel buscarProduto(int ia03_codigo) {
         try {
-            oCall = oConexaoMySql.oConnection.prepareCall("{CALL Proc_buscarProduto(?)}");
+            oCall = conn.prepareCall("{CALL Proc_buscarProduto(?)}");
             oCall.setInt(1, ia03_codigo);
             ResultSet rs = oCall.executeQuery();
             if (rs.next()) {
@@ -64,7 +66,7 @@ public class ProdutoPersistencia {
     
     public void baixaEstoque(int ia02_codigo){
         try {
-            oCall = oConexaoMySql.oConnection.prepareCall("{CALL Proc_removerProduto(?)}");
+            oCall = conn.prepareCall("{CALL Proc_baixaEstoque(?)}");
             oCall.setInt(1, ia02_codigo);
             oCall.execute();
         } catch (SQLException erro) {

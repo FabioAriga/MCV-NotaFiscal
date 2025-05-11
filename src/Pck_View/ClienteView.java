@@ -366,27 +366,7 @@ public class ClienteView extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jTextField4FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextField4FocusLost
-        if (!jTextField4.getText().trim().isEmpty()) {
-            try {
-                long la01_cpf = Long.parseLong(jTextField4.getText());
-                ClienteControl oClienteControl = new ClienteControl();
-                ClienteModel oClienteModel = oClienteControl.buscarCliente(la01_cpf);
-                if (oClienteModel != null) {
-                    jTextField8.setText(String.valueOf(oClienteModel.getA01_codigo()));
-                    jTextField1.setText(oClienteModel.getA01_nome());
-                    jTextField2.setText(oClienteModel.getA01_endereco());
-                    jTextField3.setText(String.valueOf(oClienteModel.getA01_telefone()));
-                    SimpleDateFormat oSimpleDateFormat = new SimpleDateFormat("dd/MM/yyyy");
-                    jTextField5.setText(oSimpleDateFormat.format(oClienteModel.getA01_data_nasc()));
-                    jTextField6.setText(oClienteModel.getA01_email());
-                    jTextField7.setText(String.valueOf(oClienteModel.getA01_credito()));
-                } else {
-                    JOptionPane.showMessageDialog(this, "Cliente não encontrado");
-                }
-            } catch (NumberFormatException e) {
-                JOptionPane.showMessageDialog(this, "CPF inválido");
-            }
-        }
+        
     }//GEN-LAST:event_jTextField4FocusLost
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed

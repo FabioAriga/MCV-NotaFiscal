@@ -267,11 +267,11 @@ public class NotaFiscalView extends javax.swing.JFrame {
         if (opcao == JOptionPane.YES_OPTION) {
             if (da01_credito >= da02_valor_total) {
                 double novoCredito = da01_credito - da02_valor_total;
-                oClienteControl.atualizarCliente(0, "", "", 0, 0, da01_data_nasc, "", novoCredito);
+                oClienteControl.atualizarCredito(la01_cpf, novoCredito);
                 JOptionPane.showMessageDialog(this,"Crédito suficiente. Pedido pago com sucesso" + ".\nNovo crédito: R$ " + String.format("%.2f", novoCredito));
             } else {
                 double falta = da02_valor_total - da01_credito;
-                oClienteControl.atualizarCliente(0, "", "", 0, 0, da01_data_nasc, "", 0.0);
+                oClienteControl.atualizarCredito(la01_cpf, 0.0);
                 JOptionPane.showMessageDialog(this,"Crédito insuficiente. R$ " + String.format("%.2f", da01_credito) + " foram usados.\nFalta R$ " + String.format("%.2f", falta) + " para pagar na maquininha.");
             }
         } else {
@@ -285,7 +285,7 @@ public class NotaFiscalView extends javax.swing.JFrame {
         try{        
             int ia02_codigo = Integer.parseInt(jTextField3.getText());
             PedidoControl oPedidoControl = new PedidoControl();
-            ClienteModel oClienteModel = oPedidoControl.buscarCliente(ia02_codigo);
+            ClienteModel oClienteModel = oPedidoControl.buscarClienteP(ia02_codigo);
             if (oClienteModel != null) {
                 jTextField1.setText(oClienteModel.getA01_nome());
                 jTextField2.setText(String.valueOf(oClienteModel.getA01_cpf()));

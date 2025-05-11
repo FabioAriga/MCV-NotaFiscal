@@ -17,6 +17,7 @@ import javax.swing.ImageIcon;
  * @author ariga
  */
 public class InicialView extends javax.swing.JFrame {
+    private NotaFiscalView oNotaFiscalView = new NotaFiscalView();
 
     /**
      * Creates new form InicialView
@@ -207,7 +208,6 @@ public class InicialView extends javax.swing.JFrame {
     }
     
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        NotaFiscalView oNotaFiscalView = new NotaFiscalView();
         NotaView oNotaView = new NotaView(oNotaFiscalView);
         oNotaView.setVisible(true);
     }//GEN-LAST:event_jButton2ActionPerformed
@@ -218,7 +218,6 @@ public class InicialView extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-        NotaFiscalView oNotaFiscalView = new NotaFiscalView();
         oNotaFiscalView.setVisible(true);
     }//GEN-LAST:event_jButton5ActionPerformed
 
